@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chloe Chan — Marketing & Analytics · Hong Kong</title>
+  <meta name="description" content="Personal site of Chloe Chan, MSc Marketing candidate at HKU. Digital marketing, consumer insights, brand strategy across beauty, banking and advertising.">
+  <meta name="theme-color" content="#FAF8F3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,400&family=Inter:wght@400;500&display=swap">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Georgia,serif'%3ECC%3C/text%3E%3C/svg%3E">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --bg: #FAF8F3;
+      --fg: #1A1817;
+      --fg-2: #4A4845;
+      --muted: #8A8780;
+      --line: #E5E1D6;
+      --border: #D7D2C5;
+      --accent: #8B5E3C;
+      --accent-soft: #B8956A;
+
+      --serif: "Source Serif 4", "Source Serif Pro", Charter, Georgia, "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+
+      --max-w: 760px;
+      --pad-x: clamp(24px, 5vw, 56px);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color .2s ease, color .2s ease;
+    }
+    a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    p { margin: 0 0 1em; }
+
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 72px var(--pad-x) 96px;
+    }
+
+    /* Masthead */
+    .masthead {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .kicker span:last-child { font-size: 10px; }
+
+    .masthead-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .masthead-text { flex: 1; min-width: 0; }
+    .masthead-text h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(40px, 6vw, 56px);
+      letter-spacing: -0.015em;
+      line-height: 1.02;
+      margin: 0;
+    }
+    .masthead-text .tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--fg-2);
+      margin-top: 10px;
+    }
+    .masthead-portrait {
+      width: 144px;
+      height: 144px;
+      flex-shrink: 0;
+      background: #d8d3c5;
+    }
+
+    @media (max-width: 540px) {
+      .masthead-body {
+        flex-direction: column-reverse;
+        gap: 24px;
+      }
+      .masthead-portrait { width: 110px; height: 110px; }
+    }
+
+    .lede {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--fg-2);
+      max-width: 560px;
+      margin: 36px 0 0;
+    }
+
+    /* Nav */
+    .primary-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      padding: 20px 0;
+      margin: 36px 0 0;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+    .primary-nav a {
+      border-bottom: none;
+      color: var(--fg-2);
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .primary-nav a:hover { color: var(--fg); }
+    .primary-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -4px;
+      height: 1px;
+      background: var(--fg);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .25s ease;
+    }
+    .primary-nav a:hover::after { transform: scaleX(1); }
+
+    /* Sections */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    section.in-view { opacity: 1; transform: none; }
+    section:last-of-type { border-bottom: 0; }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+      margin: 0 0 24px;
+    }
+    .section-intro {
+      font-family: var(--serif);
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: var(--fg-2);
+      max-width: 580px;
+      margin: 0 0 32px;
+    }
+
+    /* Experience entries */
+    .entry {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 28px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+    .entry:first-of-type { border-top: 0; padding-top: 0; }
+    .entry:last-of-type { padding-bottom: 0; }
+
+    .entry-meta {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .entry-meta .when { display: block; margin-bottom: 4px; }
+    .entry-meta .where {
+      display: block;
+      color: var(--fg-2);
+      font-size: 11px;
+    }
+    .entry-body h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 19px;
+      margin: 0 0 4px;
+      letter-spacing: -0.005em;
+    }
+    .entry-body .role {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--fg-2);
+      margin: 0 0 12px;
+    }
+    .entry-body ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--fg-2);
+    }
+    .entry-body li {
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .entry-body li::marker { color: var(--accent-soft); }
+
+    @media (max-width: 540px) {
+      .entry { grid-template-columns: 1fr; gap: 8px; }
+      .entry-meta .when { margin-bottom: 2px; }
+    }
+
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+    }
+    .skills-col h4 {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    .skills-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--fg-2);
+      line-height: 1.9;
+    }
+    @media (max-width: 640px) {
+      .skills-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    /* Highlight numbers */
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 0;
+      margin: 28px 0 12px;
+    }
+    .numbers div { text-align: left; }
+    .numbers .num {
+      font-family: var(--serif);
+      font-size: 26px;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+    .numbers .lbl {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    @media (max-width: 640px) {
+      .numbers { grid-template-columns: 1fr 1fr; gap: 18px 12px; }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--fg-2);
+    }
+    footer .links { display: flex; gap: 22px; }
+    footer a { border-bottom: 1px solid transparent; }
+    footer a:hover { border-bottom-color: var(--accent); }
+    footer .copy { color: var(--muted); font-size: 12px; }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+    <!-- ============ MASTHEAD ============ -->
+    <header class="masthead">
+      <div class="kicker">
+        <span>Portfolio · 2025 — 26</span>
+        <span>Hong Kong · EN · 中文</span>
+      </div>
+
+      <div class="masthead-body">
+        <div class="masthead-text">
+          <h1>Chloe Chan</h1>
+          <p class="tagline">Marketing postgraduate &middot; Hong Kong</p>
+        </div>
+        <img class="masthead-portrait" src="assets/profile.png" alt="Portrait of Chloe Chan" width="144" height="144">
+      </div>
+
+      <p class="lede">
+        I work where consumer data meets brand storytelling. Recent work spans digital
+        campaigns and CRM at L'Oréal Hong Kong, growth experimentation at HSBC, and
+        account management at Ogilvy — with side projects in creator content and
+        consumer research.
+      </p>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <p class="section-label">01 — About</p>
+      <h2 class="section-title">Profile</h2>
+      <p class="section-intro">
+        Marketing postgraduate with academic training from The University of Hong Kong
+        and The Hong Kong University of Science and Technology. Experienced in digital
+        campaigns, consumer research, social media strategy and marketing analytics
+        across beauty, banking and advertising. Skilled at translating customer data
+        into practical brand and growth recommendations. Native Cantonese speaker with
+        professional fluency in English and Mandarin.
+      </p>
+
+      <div class="numbers" aria-label="Highlights">
+        <div>
+          <span class="num">1.2M</span>
+          <span class="lbl">Social impressions<br>L'Oréal launch</span>
+        </div>
+        <div>
+          <span class="num">+11%</span>
+          <span class="lbl">Email open rate<br>HSBC A/B test</span>
+        </div>
+        <div>
+          <span class="num">420</span>
+          <span class="lbl">Survey responses<br>Fashion study</span>
+        </div>
+        <div>
+          <span class="num">6.8K</span>
+          <span class="lbl">Organic followers<br>Hidden Hong Kong</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience">
+      <p class="section-label">02 — Experience</p>
+      <h2 class="section-title">Where I've worked</h2>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Jun – Aug 2025</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>L'Oréal Hong Kong</h3>
+          <p class="role">Marketing Intern — Consumer Products Division</p>
+          <ul>
+            <li>Supported integrated campaigns across Instagram, YouTube, TikTok and retail; analysed weekly sales and media performance from more than 80 retail locations.</li>
+            <li>Coordinated product seeding with 35 micro-influencers and tracked reach, engagement and earned content.</li>
+            <li>Helped deliver a product launch that generated 1.2M social impressions and exceeded its engagement target by 24%.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Jun – Aug 2024</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>HSBC Hong Kong</h3>
+          <p class="role">Digital Marketing Intern — Wealth &amp; Personal Banking</p>
+          <ul>
+            <li>Built weekly dashboards covering impressions, click-through rates, conversion rates and cost per acquisition for youth acquisition campaigns.</li>
+            <li>Supported A/B tests on email subject lines and landing-page CTAs; the winning email increased open rate by 11% and click-through rate by 7%.</li>
+            <li>Analysed more than 1,500 survey responses and summarised customer pain points for the digital product team.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Jun – Aug 2023</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>Ogilvy Hong Kong</h3>
+          <p class="role">Account Management Intern</p>
+          <ul>
+            <li>Prepared competitor reviews, audience profiles, creative briefs and post-campaign reports for consumer and hospitality clients.</li>
+            <li>Monitored online conversations and translated cultural trends into weekly social-listening summaries.</li>
+            <li>Presented a Gen Z content proposal; two recommended formats were incorporated into the final campaign plan.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Sep 2022 – May 2023</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>Harbour &amp; Pine Coffee</h3>
+          <p class="role">Part-time Social Media &amp; Community Assistant</p>
+          <ul>
+            <li>Planned bilingual Instagram and Xiaohongshu content, growing Instagram followers from 2,800 to 4,600 in eight months.</li>
+            <li>Launched a user-generated-content campaign that attracted more than 170 customer posts and organised two community events for 120+ participants.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects">
+      <p class="section-label">03 — Selected projects</p>
+      <h2 class="section-title">Work I'm proud of</h2>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">2026</span>
+          <span class="where">HKU Marketing Analytics</span>
+        </div>
+        <div class="entry-body">
+          <h3>Hong Kong sustainable fashion consumer study</h3>
+          <p class="role">Team Lead</p>
+          <ul>
+            <li>Designed a bilingual survey with 420 valid responses and used SPSS for factor analysis, cluster analysis and regression modelling.</li>
+            <li>Identified four consumer segments and recommended differentiated messages, channels and offers for each.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">2023 – Present</span>
+          <span class="where">Personal project</span>
+        </div>
+        <div class="entry-body">
+          <h3>"Hidden Hong Kong" content campaign</h3>
+          <p class="role">Photographer &amp; producer</p>
+          <ul>
+            <li>Built a bilingual neighbourhood and street-photography account to 6,800+ organic followers; produced 90+ short videos and photo stories.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">2025</span>
+          <span class="where">Independent</span>
+        </div>
+        <div class="entry-body">
+          <h3>Gen Z beauty trends dashboard</h3>
+          <p class="role">Analytics &amp; strategy</p>
+          <ul>
+            <li>Cleaned publicly available social engagement data and built a Tableau dashboard comparing beauty topics, formats and engagement patterns.</li>
+            <li>Translated the analysis into a sample three-month content strategy focused on high-save tutorial formats.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education">
+      <p class="section-label">04 — Education</p>
+      <h2 class="section-title">Academic background</h2>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Sep 2025 – Aug 2026 expected</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>The University of Hong Kong — HKU Business School</h3>
+          <p class="role">MSc in Marketing</p>
+          <ul>
+            <li>Focus areas: Digital Marketing, Consumer Insights, Marketing Analytics, CRM and Brand Management.</li>
+            <li>Recipient of the HKU Business School MSc Entrance Scholarship.</li>
+            <li>Consulting project: segmented Gen Z customers for a sustainable fashion start-up and proposed a creator-led campaign projected to reduce acquisition cost by 18%.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <span class="when">Sep 2021 – Jun 2025</span>
+          <span class="where">Hong Kong SAR</span>
+        </div>
+        <div class="entry-body">
+          <h3>The Hong Kong University of Science and Technology</h3>
+          <p class="role">BBA in Management; Minor in Marketing · CGPA 3.65 / 4.30</p>
+          <ul>
+            <li>Dean's List in 2022–23 and 2023–24.</li>
+            <li>Final-year project: How Short-form Video Influences Purchase Intention among Gen Z Consumers in Hong Kong.</li>
+            <li>Semester exchange at Copenhagen Business School, Jan–May 2024; studied sustainable marketing and international branding.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills">
+      <p class="section-label">05 — Skills &amp; languages</p>
+      <h2 class="section-title">Toolkit</h2>
+
+      <div class="skills-grid">
+        <div class="skills-col">
+          <h4>Marketing &amp; analytics</h4>
+          <ul>
+            <li>Campaign planning</li>
+            <li>CRM &amp; lifecycle</li>
+            <li>GA4 · Excel · Power BI</li>
+            <li>Tableau · SPSS · SQL</li>
+          </ul>
+        </div>
+        <div class="skills-col">
+          <h4>Creative &amp; research</h4>
+          <ul>
+            <li>Canva · Figma · Photoshop</li>
+            <li>Qualtrics surveys</li>
+            <li>Social listening</li>
+            <li>Photography &amp; short-form video</li>
+          </ul>
+        </div>
+        <div class="skills-col">
+          <h4>Languages</h4>
+          <ul>
+            <li>Cantonese — native</li>
+            <li>English — professional</li>
+            <li>Mandarin — professional</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <footer id="contact">
+      <div>
+        <p class="section-label" style="margin-bottom: 6px;">Get in touch</p>
+        <p style="margin: 0; font-family: var(--serif); font-size: 17px;">
+          chloe.chan.marketing@hku.com &nbsp;·&nbsp; +852 5123 4567 &nbsp;·&nbsp; Hong Kong SAR
+        </p>
+      </div>
+      <div class="links">
+        <a href="https://linkedin.com/in/chloe-chan-marketing-demo" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:chloe.chan.marketing@hku.com">Email</a>
+      </div>
+      <p class="copy" style="flex-basis: 100%; margin-top: 24px;">
+        © 2026 Chloe Chan · Built with care, hosted on GitHub Pages.
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('section').forEach((s) => io.observe(s));
+  </script>
+</body>
+</html>
